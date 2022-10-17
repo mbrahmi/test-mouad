@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% block page_contents %}
+        <div class="topnav">
+            <div class="search-container">
+                <form action="{{ path('movie_search') }}" method="get">
+                    <input minlength="2" type="text" placeholder="Search.." name="query">
+                </form>
+            </div>
+        </div>
+        <div>
+            <div class="sidenav">
+                {{
+                render(
+                    controller(
+                        'App\\Controller\\GenreController::list'
+                    )
+                )
+                }}
+            </div>
+            <div class="list">
+                {% if movies is not defined %}
+                    {{
+                    render(
+                        controller(
+                            'App\\Controller\\MovieController::list',
+                            {genre_id: selected_genre | default("")}
+                        )
+                    )
+                    }}
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

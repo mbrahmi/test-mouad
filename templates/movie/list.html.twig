@@ -1,0 +1,11 @@
+{% include('movie/lead.html.twig') %}
+<br/>
+<br/>
+<br/>
+{% for movie in movies %}
+    <br/>
+    <div>
+        {% include('movie/card.html.twig') %}
+    </div>
+    <br/>
+{% endfor %}
